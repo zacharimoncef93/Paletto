@@ -6,6 +6,7 @@ var Paletto = function () {
     var nbrBilleplayer2=0;
     var myArrayPlayer1;
     var myArrayPlayer2 ;
+    var possible=true;
 // private attributes and methods
     this.start=function(){
         var i;
@@ -128,4 +129,54 @@ var Paletto = function () {
         return true;
     };*/
 // public methods
+    this.checkcase = function (couleur,ligne,colone) {
+        if(board[ligne][colone]==couleur){
+        var nbrvoisin=0;
+        var nbrvidevoisin=0;
+        if(colone<6){
+            if(board[ligne][colone+1]!="vide"){
+                nbrvoisin+=1;
+            }
+            else{
+                nbrvidevoisin+=1;
+            }
+        }
+        if(ligne<6){
+             if(board[ligne+1][colone]!="vide"){
+                nbrvoisin+=1;
+            }
+            else{
+                 nbrvidevoisin+=1;
+             }
+        }
+
+        if(ligne>0){
+        if(board[ligne-1][colone]!="vide"){
+            nbrvoisin+=1;
+        }
+        else{
+            nbrvidevoisin+=1;
+        }
+        }
+        if(colone>0){
+        if(board[ligne][colone-1]!="vide"){
+            nbrvoisin+=1;
+        }
+        else{
+            nbrvidevoisin+=1;
+        }
+        }
+
+     if(nbrvoisin==2 && nbrvidevoisin==2){
+     possible=false;
+     }
+     if(nbrvoisin==3){
+            possible=false;
+     }
+     if(nbrvoisin==4){
+         possible=false;
+     }
+        }
+        return possible;
+    };
 };
