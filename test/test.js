@@ -1,6 +1,7 @@
-'use strict';
+MonTestCase= TestCase(" MonTestCase ");
 
-var PalettoTestCase = TestCase("PalettoTestCase");
-
-PalettoTestCase.prototype.testStory1 = function () {
+MonTestCase.prototype.testHistoire1=function (){
+    var game = new Paletto();
+    game.start;
+    assertTrue (game.getCasepleine()==36);
 };
