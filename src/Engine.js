@@ -133,7 +133,7 @@ var Paletto = function () {
         if(board[ligne][colone]==couleur){
         var nbrvoisin=0;
         var nbrvidevoisin=0;
-        if(colone<6){
+        if(colone<5){
             if(board[ligne][colone+1]!="vide"){
                 nbrvoisin+=1;
             }
@@ -141,7 +141,7 @@ var Paletto = function () {
                 nbrvidevoisin+=1;
             }
         }
-        if(ligne<6){
+        if(ligne<5){
              if(board[ligne+1][colone]!="vide"){
                 nbrvoisin+=1;
             }
