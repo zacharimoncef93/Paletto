@@ -89,31 +89,43 @@ var Paletto = function () {
         }
         return true;
     };
-    this.getcase = function (couleur,player) {
+   /* this.getcaseDynamique = function (couleur,player) {
         var i;
         var j;
         board = new Array(6);
+        if(player=1){
         for(i=0; i<6; i++){
-            board[i]=new Array(6);
             for(j=0;j<6;j++){
-                board[i][j]="vide";
+               if(board[i][j]==couleur){
+               if (i>0 && j>0)
+               {
+               if(board[i][j-1]!=board[i][j+1]&&board[i-1][j]!=board[i+1][j]){
+               myArrayPlayer1[nbrBilleplayer1]=couleur;
+                   nbrBilleplayer1+=1;
+                   board[i][j]="vide";
+               }
+               }
+               }
             }
         }
-       /* if(player==1){
-            if(board[ligne][colone]==couleur){
-                myArrayPlayer1[nbrBilleplayer1]=board[ligne][colone];
-                board[ligne][colone]= "vide";
-                nbrBilleplayer1+=1;
-            }
         }
         else{
-            if(board[ligne][colone]==couleur){
-                myArrayPlayer2[nbrBilleplayer2]=board[ligne][colone];
-                board[ligne][colone]= "vide";
-                nbrBilleplayer2+=1;
+            for(i=0; i<6; i++){
+                for(j=0;j<6;j++){
+                    if(board[i][j]==couleur){
+                        if (i>0 && j>0)
+                        {
+                            if(board[i][j-1]!=board[i][j+1]&&board[i-1][j]!=board[i+1][j]){
+                                myArrayPlayer2[nbrBilleplayer2]=couleur;
+                                nbrBilleplayer2+=1;
+                                board[i][j]="vide";
+                            }
+                        }
+                    }
+                }
             }
-        }*/
+        }
         return true;
-    };
+    };*/
 // public methods
 };
