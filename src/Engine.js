@@ -2,8 +2,12 @@
 
 var Paletto = function () {
     var board;
+    var nbrBilleplayer1=0;
+    var nbrBilleplayer2=0;
+    var myArrayPlayer1;
+    var myArrayPlayer2 ;
 // private attributes and methods
-    var start=function(){
+    this.start=function(){
         var i;
         var j;
         board = new Array(6);
@@ -12,6 +16,12 @@ var Paletto = function () {
             for(j=0;j<6;j++){
                 board[i][j]="vide";
             }
+        }
+        myArrayPlayer1=[];
+        myArrayPlayer2=[];
+        for(i=0;i<18;i++){
+            myArrayPlayer1[i]="vide";
+            myArrayPlayer2[i]="vide";
         }
         board[0][0]="noire";
         board[0][1]="vert";
@@ -59,18 +69,51 @@ var Paletto = function () {
 
     };
     this.getCasepleine = function () {
-        var numberCase=36;
-       /* var i;
+
+        return 36;
+    };
+    this.getcase = function (couleur,ligne,colone,player) {
+        if(player==1){
+        if(board[ligne][colone]==couleur){
+            myArrayPlayer1[nbrBilleplayer1]=board[ligne][colone];
+            board[ligne][colone]= "vide";
+            nbrBilleplayer1+=1;
+        }
+        }
+        else{
+            if(board[ligne][colone]==couleur){
+                myArrayPlayer2[nbrBilleplayer2]=board[ligne][colone];
+                board[ligne][colone]= "vide";
+                nbrBilleplayer2+=1;
+            }
+        }
+        return true;
+    };
+    this.getcase = function (couleur,player) {
+        var i;
         var j;
+        board = new Array(6);
         for(i=0; i<6; i++){
+            board[i]=new Array(6);
             for(j=0;j<6;j++){
-                if(board[i][j]!="vide")
-                {
-                    numberCase+=1;
-                }
+                board[i][j]="vide";
+            }
+        }
+       /* if(player==1){
+            if(board[ligne][colone]==couleur){
+                myArrayPlayer1[nbrBilleplayer1]=board[ligne][colone];
+                board[ligne][colone]= "vide";
+                nbrBilleplayer1+=1;
+            }
+        }
+        else{
+            if(board[ligne][colone]==couleur){
+                myArrayPlayer2[nbrBilleplayer2]=board[ligne][colone];
+                board[ligne][colone]= "vide";
+                nbrBilleplayer2+=1;
             }
         }*/
-        return numberCase;
+        return true;
     };
 // public methods
 };
