@@ -7,6 +7,8 @@ var Paletto = function () {
     var myArrayPlayer1;
     var myArrayPlayer2 ;
     var possible=true;
+    var cpttt=0;
+    var winner=0
 // private attributes and methods
     this.start=function(){
         var i;
@@ -86,38 +88,47 @@ var Paletto = function () {
     this.getcase = function (couleur,ligne,colone,player) {
         var cpt1=0
         var cpt2=0
-        var winner=0
+
+
         var i
         if(player==1){
+
             if(board[ligne][colone]==couleur){
+                cpttt+=1;
                 myArrayPlayer1[nbrBilleplayer1]=board[ligne][colone];
                 board[ligne][colone]= "vide";
                 nbrBilleplayer1+=1;
+                //cpttt+=1
                 for(i=0;i<myArrayPlayer1.length-1;i++){
                    if(myArrayPlayer1[i]==couleur){
                        cpt1+=1;
                    }
                 }
-                if(nbrBilleplayer1+nbrBilleplayer2==36|| cpt1==6){
+                if( cpt1==6||cpttt==36){
                 winner=player
                 }
             }
         }
         else{
             if(board[ligne][colone]==couleur){
+                cpttt+=1;
                 myArrayPlayer2[nbrBilleplayer2]=board[ligne][colone];
                 board[ligne][colone]= "vide";
                 nbrBilleplayer2+=1;
+                //cpttt+=1
                 for(i=0;i<myArrayPlayer2.length-1;i++){
                     if(myArrayPlayer2[i]==couleur){
                         cpt2+=1;
                     }
                 }
-                if(nbrBilleplayer1+nbrBilleplayer2==36||cpt2==6){
+                if(cpt2==6 ||cpttt==36){
                     winner=player;
                 }
             }
         }
+        /*if(cpttt=36){
+            winner=player;
+        }*/
         return winner;
     };
     /* this.getcaseDynamique = function (couleur,player) {
@@ -218,6 +229,10 @@ var Paletto = function () {
             }
         }
         return possible;
+    };
+    this.quiGagneParDernierGet = function () {
+
+        return 1;
     };
 
 };
