@@ -70,113 +70,154 @@ var Paletto = function () {
 
     };
     this.getCasepleine = function () {
-
-        return 36;
+        var i;
+        var j;
+        var n=36;
+        for(i=0; i<6; i++){
+            board[i]=new Array(6);
+            for(j=0;j<6;j++){
+                if(board[i][j]=="vide"){
+                    n=0;
+                };
+            }
+        }
+        return n;
     };
     this.getcase = function (couleur,ligne,colone,player) {
+        var cpt1=0
+        var cpt2=0
+        var winner=0
+        var i
         if(player==1){
-        if(board[ligne][colone]==couleur){
-            myArrayPlayer1[nbrBilleplayer1]=board[ligne][colone];
-            board[ligne][colone]= "vide";
-            nbrBilleplayer1+=1;
-        }
+            if(board[ligne][colone]==couleur){
+                myArrayPlayer1[nbrBilleplayer1]=board[ligne][colone];
+                board[ligne][colone]= "vide";
+                nbrBilleplayer1+=1;
+                for(i=0;i<myArrayPlayer1.length-1;i++){
+                   if(myArrayPlayer1[i]==couleur){
+                       cpt1+=1;
+                   }
+                }
+                if(nbrBilleplayer1+nbrBilleplayer2==36|| cpt1==6){
+                winner=player
+                }
+            }
         }
         else{
             if(board[ligne][colone]==couleur){
                 myArrayPlayer2[nbrBilleplayer2]=board[ligne][colone];
                 board[ligne][colone]= "vide";
                 nbrBilleplayer2+=1;
-            }
-        }
-        return true;
-    };
-   /* this.getcaseDynamique = function (couleur,player) {
-        var i;
-        var j;
-        board = new Array(6);
-        if(player=1){
-        for(i=0; i<6; i++){
-            for(j=0;j<6;j++){
-               if(board[i][j]==couleur){
-               if (i>0 && j>0)
-               {
-               if(board[i][j-1]!=board[i][j+1]&&board[i-1][j]!=board[i+1][j]){
-               myArrayPlayer1[nbrBilleplayer1]=couleur;
-                   nbrBilleplayer1+=1;
-                   board[i][j]="vide";
-               }
-               }
-               }
-            }
-        }
-        }
-        else{
-            for(i=0; i<6; i++){
-                for(j=0;j<6;j++){
-                    if(board[i][j]==couleur){
-                        if (i>0 && j>0)
-                        {
-                            if(board[i][j-1]!=board[i][j+1]&&board[i-1][j]!=board[i+1][j]){
-                                myArrayPlayer2[nbrBilleplayer2]=couleur;
-                                nbrBilleplayer2+=1;
-                                board[i][j]="vide";
-                            }
-                        }
+                for(i=0;i<myArrayPlayer2.length-1;i++){
+                    if(myArrayPlayer2[i]==couleur){
+                        cpt2+=1;
                     }
+                }
+                if(nbrBilleplayer1+nbrBilleplayer2==36||cpt2==6){
+                    winner=player;
                 }
             }
         }
-        return true;
-    };*/
+        return winner;
+    };
+    /* this.getcaseDynamique = function (couleur,player) {
+     var i;
+     var j;
+     board = new Array(6);
+     if(player=1){
+     for(i=0; i<6; i++){
+     for(j=0;j<6;j++){
+     if(board[i][j]==couleur){
+     if (i>0 && j>0)
+     {
+     if(board[i][j-1]!=board[i][j+1]&&board[i-1][j]!=board[i+1][j]){
+     myArrayPlayer1[nbrBilleplayer1]=couleur;
+     nbrBilleplayer1+=1;
+     board[i][j]="vide";
+     }
+     }
+     }
+     }
+     }
+     }
+     else{
+     for(i=0; i<6; i++){
+     for(j=0;j<6;j++){
+     if(board[i][j]==couleur){
+     if (i>0 && j>0)
+     {
+     if(board[i][j-1]!=board[i][j+1]&&board[i-1][j]!=board[i+1][j]){
+     myArrayPlayer2[nbrBilleplayer2]=couleur;
+     nbrBilleplayer2+=1;
+     board[i][j]="vide";
+     }
+     }
+     }
+     }
+     }
+     }
+     return true;
+     };*/
 // public methods
     this.checkcase = function (couleur,ligne,colone) {
         if(board[ligne][colone]==couleur){
-        var nbrvoisin=0;
-        var nbrvidevoisin=0;
-        if(colone<5){
-            if(board[ligne][colone+1]!="vide"){
-                nbrvoisin+=1;
+            var nbrvoisin=0;
+            var nbrvidevoisin=0;
+            if(colone<5){
+                if(board[ligne][colone+1]!="vide"){
+                    nbrvoisin+=1;
+                }
+                else{
+                    nbrvidevoisin+=1;
+                }
             }
-            else{
-                nbrvidevoisin+=1;
+            if(ligne<5){
+                if(board[ligne+1][colone]!="vide"){
+                    nbrvoisin+=1;
+                }
+                else{
+                    nbrvidevoisin+=1;
+                }
             }
-        }
-        if(ligne<5){
-             if(board[ligne+1][colone]!="vide"){
-                nbrvoisin+=1;
-            }
-            else{
-                 nbrvidevoisin+=1;
-             }
-        }
 
-        if(ligne>0){
-        if(board[ligne-1][colone]!="vide"){
-            nbrvoisin+=1;
-        }
-        else{
-            nbrvidevoisin+=1;
-        }
-        }
-        if(colone>0){
-        if(board[ligne][colone-1]!="vide"){
-            nbrvoisin+=1;
-        }
-        else{
-            nbrvidevoisin+=1;
-        }
-        }
+            if(ligne>0){
+                if(board[ligne-1][colone]!="vide"){
+                    nbrvoisin+=1;
+                }
+                else{
+                    nbrvidevoisin+=1;
+                }
+            }
+            if(colone>0){
+                if(board[ligne][colone-1]!="vide"){
+                    nbrvoisin+=1;
+                }
+                else{
+                    nbrvidevoisin+=1;
+                }
+            }
 
-     if(nbrvoisin==2 && nbrvidevoisin==2){
-     possible=false;
-     }
-     if(nbrvoisin==3){
-            possible=false;
-     }
-     if(nbrvoisin==4){
-         possible=false;
-     }
+            if(nbrvoisin==2 && nbrvidevoisin==2){
+                var verif=0;
+                if(board[ligne][colone+1]!="vide"&&board[ligne+1][colone+1]!="vide"){
+                    verif+=1;
+                }
+                else if(board[ligne][colone-1]!="vide"&&board[ligne+1][colone-1]!="vide"){
+                    verif+=1;
+                }
+                if(verif=0){
+                    possible=false;
+                }
+
+            }
+            if(nbrvoisin==3){
+                possible=false;
+            }
+            if(nbrvoisin==4){
+                possible=false;
+            }
         }
         return possible;
     };
+
 };
